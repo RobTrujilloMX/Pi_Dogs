@@ -1,0 +1,56 @@
+.divDet {
+  background: url("../../img/BGAll.png");
+  height: 100vh;
+}
+
+.detailText {
+  margin: 10px;
+  display: inline-block;
+  border: #584b42;
+  border-radius: 3px;
+  box-shadow: #292435 3px 3px 10px;
+  width: 900px;
+  height: 700px;
+  justify-content: space-around;
+  background: rgb(83, 125, 145);
+  background: linear-gradient(243deg, rgba(83, 125, 145, 0.39677869438791147) 36%, rgba(164, 209, 200, 0.9177870977492559) 76%);
+}
+
+.info {
+  font-size: larger;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* border: 1px black solid; */
+  background: rgb(247,119,84);
+  background: radial-gradient(circle, rgba(247,119,84,0.660084016516763) 16%, rgba(83,125,145,1) 100%); 
+  font-weight: bold;
+
+}
+
+.detailImg {
+  width: 600px;
+  height: 400px;
+  border: 1px solid #596e79;
+  border-radius: 3px;
+}
+
+.btnHome {
+  background-color: #f77754;
+  margin-top: 10px;
+  border: solid 2px #584b42;
+  border-radius: 3px;
+  width: 100px;
+  font-size: 15px;
+  color: whitesmoke;
+}
+
+.btnHome:hover {
+  /* transition: all 1s ease; */
+  /* padding: 5px 10px; */
+  background: #537d91;
+  border-radius: 3px;
+  /* box-shadow:red; */
+}
+
+

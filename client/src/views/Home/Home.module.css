@@ -1,0 +1,109 @@
+.mainHome {
+  background: url(../../img/BGMainHome.png);
+  background-color: #85cad0;
+  height: 99.8vh;
+  background-repeat: no-repeat;
+  justify-content: center;
+}
+
+.btnRefresh {
+  background-color: #f77754;
+  margin-top: 12em;
+  border: solid 2px #584b42;
+  border-radius: 3px;
+  width: 70px;
+  font-size: 15px;
+  color: white;
+}
+
+.btnRefresh:hover {
+  background: #537d91;
+  border-radius: 3px;
+  /* box-shadow:red; */
+}
+
+.searchBar {
+  padding: 5px;
+}
+
+.btnCreate {
+  background-color: #f77754;
+  margin-top: 10px;
+  border: solid 2px #584b42;
+  border-radius: 3px;
+  width: 100px;
+  font-size: 15px;
+  color: whitesmoke;
+}
+
+.btnCreate:hover {
+  /* transition: all 1s ease; */
+  /* padding: 5px 10px; */
+  background: #537d91;
+  border-radius: 3px;
+  /* box-shadow:red; */
+}
+
+.filtersBar {
+  padding: 1px;
+  background: rgb(83,125,145);
+  background: rgb(83,125,145);
+  background: linear-gradient(164deg, rgba(83,125,145,0.4976190305223652) 44%, rgba(164,209,200,0.7469187504103203) 89%);  
+  border: solid 1px #584b42;
+}
+
+.filterSelect2 {
+  border: solid 2px #584b42;
+  background-color: whitesmoke;
+  color: black;
+  margin: 15px;
+  border-radius: 3px;
+}
+
+.pagination {
+  border: solid 2px #584b42;
+  background-color: #f77754;
+}
+
+.card {
+  background: url(../../img/BGAll.png);
+  background-color: #85cad0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.cardDetail {
+  justify-content: space-around;
+  background: rgb(83,125,145);
+  background: linear-gradient(243deg, rgba(83,125,145,0.39677869438791147) 36%, rgba(164,209,200,0.9177870977492559) 76%);  
+border-radius: 5px;
+margin-bottom: 5px;
+}
+
+.btnDetail {
+  background-color: #f77754;
+  margin: 10px;
+  border: solid 2px #584b42;
+  border-radius: 3px;
+  width: 70px;
+  font-size: 15px;
+  color: white;
+}
+
+.btnDetail:hover {
+  background: #537d91;
+  border-radius: 3px;
+  /* box-shadow:red; */
+}
+
+
+@media screen and (max-width: 768px) {
+  .filtros {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
