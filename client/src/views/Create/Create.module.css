@@ -1,59 +1,9 @@
-.mainContainer {
-  background: url("../../img/BGAll.png");
-  height: 100vh;
+.warning {
+  border: solid red 1px;
+  border-radius: 0.2em;
 }
-
-.createLabel{
-    display:table-cell;
-    padding: 30px;
-}
-  
-
-.btnClose {
-  background-color: #f77754;
-  margin: 10px;
-  border: solid 2px #584b42;
-  border-radius: 3px;
-  width: 20px;
-  font-size: 15px;
-  color: white;
-}
-
-.btnClose:hover {
-  background: #537d91;
-  border-radius: 3px;
-  /* box-shadow:red; */
-}
-.btnSubmit {
-  background-color: #f77754;
-  margin: 10px;
-  border: solid 2px #584b42;
-  border-radius: 3px;
-  width: 100px;
-  font-size: 15px;
-  color: white;
-}
-
-.btnSubmit:hover {
-  background: #537d91;
-  border-radius: 3px;
-}
-
-.btnHome {
-  background-color: #f77754;
-  margin: 10px;
-  border: solid 2px #584b42;
-  border-radius: 3px;
-  width: 100px;
-  font-size: 15px;
-  color: white;
-}
-
-.btnHome:hover {
-  background: #537d91;
-  border-radius: 3px;
-}
-
-.createUl {
-  list-style: none;
+.danger {
+  font-size: 10px;
+  color: red;
+  margin-left: 0em;
 }

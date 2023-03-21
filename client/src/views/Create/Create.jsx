@@ -1,45 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { postDog, getTemperaments } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import style from "../Create/Create.module.css";
 
+const validate = (input) => {
+  let errors = {};
+  if (!/^[ a-zA-Z]+$/.test(input.name)) {
+    errors.name = "Name is required (No spaces, numbers or special characters)";
+  }
+  if (!/^[0-9]+$/.test(input.height)) {
+    errors.height = "Height is required (Only positive numbers) ";
+  }
+  if (!/^[0-9]+$/.test(input.weight)) {
+    errors.weight = "Weight is required (Only positive numbers) ";
+  }
+  if (!/^[ 0-9-]+$/.test(input.life_span)) {
+    errors.life_span = "Life span is required (Only positive numbers";
+  }
+  if (!/(https?:\/\/.*\.(?:png|jpg|jpeg))/i.test(input.image)) {
+    errors.image = "Only URL's are allowed";
+  }
 
-// function validate(input) {
-//   let errors = {};
-
-//   if (!input.name) {
-//       errors.name = ("Name is required");
-
-//   } else if (parseInt(input.name)) {
-//       errors.name = ("Invalid format");
-//   }
-//   if (!input.image) {
-//       errors.image = ("Image is required");
-//   }
-
-//   if (!input.height) {
-//       errors.height = ("Height is required")
-//   }
-//   if (!input.weight) {
-//       errors.weight = ("Weight is required")
-//   }
-//   if (!input.life_span) {
-//       errors.life_span = ("Life span is required")
-//   }
-
-//   return errors;
-// }
+  return errors;
+};
 
 const Create = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const temperament = useSelector((state) => state.temperament);
   const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    dispatch(getTemperaments());
-  }, [dispatch]);
 
   const [input, setInput] = useState({
     name: "",
@@ -50,31 +40,39 @@ const Create = () => {
     temperament: [],
   });
 
-  const handlerChange = (e) => {
+  const handleChange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    // setErrors(
-    //   validate({
-    //     ...input,
-    //     [e.target.name]: e.target.value,
-    //   })
-    // );
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
-  const handlerSelect = (e) => {
+  const handleSelect = (e) => {
+    if (!input.temperament.includes(e.target.value)) {
+      setInput({
+        ...input,
+        temperament: [...input.temperament, e.target.value],
+      });
+    }
+  };
+
+  const handleDelete = (e) => {
     setInput({
       ...input,
-      temperament: [...input.temperament, e.target.value],
+      temperament: input.temperament.filter((tempers) => tempers !== e), //deja todo lo que no sea el elemento clickeado apra eliminar
     });
   };
 
-  const handlerSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
     dispatch(postDog(input));
-    alert("Dog created successfully");
+    alert("Dog was created succesfully");
     setInput({
       name: "",
       height: "",
@@ -86,100 +84,113 @@ const Create = () => {
     history.push("/home");
   };
 
-  const handlerDelete = (el) => {
-    setInput({
-      input,
-      temperament: input.temperament.filter((temp) => temp !== el),
-    });
-  };
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
 
   return (
-    <div className={style.mainContainer}>
-      <Link to="/home">
-        <button className={style.btnHome}>Home</button>
+    <div>
+      <Link to={"/Home"}>
+        <button>Back</button>
       </Link>
-
-      <h1>Create dog</h1>
-
-      <form onSubmit={(e) => handlerSubmit(e)}>
-        <div className={style.createLabel}>
+      <h1>Create Dog</h1>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <div>
           <label>Name: </label>
           <input
             type="text"
+            name="name"
             value={input.name}
             placeholder="Name"
-            name="name"
-            onChange={(e) => handlerChange(e)}
+            onChange={(e) => handleChange(e)}
           />
-          {/* {errors.name && <p className={style.errors}>{errors.name}</p>} */}
+          {errors.name && <p className={style.danger}>{errors.name}</p>}
         </div>
-        <div className={style.createLabel}>
-          <label>Height: </label>
+        <hr />
+        <div>
+          <label htmlFor="height">Height: </label>
           <input
-            type="text"
-            value={input.height}
+            type="number"
             name="height"
-            placeholder="Height"
-            onChange={(e) => handlerChange(e)}
-            />{" "}
-             {/* {errors.name && <p className={style.errors}>{errors.height}</p>} */}
-        </div>
-        <div className={style.createLabel}>
-          <label>Weight: </label>
-          <input
-            type="text"
-            value={input.weight}
-            name="weight"
-            placeholder="weight"
-            onChange={(e) => handlerChange(e)}
-          />{" "}
-          {/* {errors.name && <p className={style.errors}>{errors.weight}</p>} */}
-        </div>
-        <div className={style.createLabel}>
-          <label>Life span: </label>
-          <input
-            type="text"
-            value={input.life_span}
-            name="life_span"
-            placeholder="Life span"
-            onChange={(e) => handlerChange(e)}
-          />{" "}
-          {/* {errors.name && <p className={style.errors}>{errors.life_span}</p>} */}
-        </div>
-        <div className={style.createLabel}>
-          <label>Image: </label>
-          <input
-            type="text"
-            value={input.image}
-            name="image"
-            placeholder="Image"
-            onChange={(e) => handlerChange(e)}
+            value={input.height}
+            placeholder="Height in Cm."
+            onChange={(e) => handleChange(e)}
           />
-          {/* {errors.name && <p className={style.errors}>{errors.image}</p>} */}
+          {errors.height && !errors.name && (
+            <p className={style.danger}>{errors.height}</p>
+          )}
         </div>
-        <div className={style.createLabel}>
-          <label>Temperaments</label>
-          <select onChange={(e) => handlerSelect(e)}>
-            {temperament?.map((temp) => {
-              return <option value={temp.name}>{temp.name}</option>;
-            })}
-          </select>
-          <ul className={style.createUl}>
-            <li>{input.temperament.map((el) => el + ", ")}</li>
-          </ul>
+        <hr />
+        <div>
+          <label htmlFor="weight">Weight: </label>
+          <input
+            type="number"
+            name="weight"
+            value={input.weight}
+            placeholder="Weight in Kg."
+            onChange={(e) => handleChange(e)}
+          />
+          {errors.weight && !errors.height && (
+            <p className={style.danger}>{errors.weight}</p>
+          )}
         </div>
-        <button className={style.btnSubmit} type="submit">
+        <hr />
+        <div>
+          <label htmlFor="life_span">Life span: </label>
+          <input
+            type="number"
+            name="life_span"
+            value={input.life_span}
+            placeholder="Life span in years"
+            onChange={(e) => handleChange(e)}
+          />
+          {errors.life_span && !errors.weight && (
+            <p className={style.danger}>{errors.life_span}</p>
+          )}
+        </div>
+        <hr />
+        <div>
+          <label htmlFor="image">Image: </label>
+          <input
+            type="text"
+            name="image"
+            value={input.image}
+            placeholder="Image URL"
+            onChange={(e) => handleChange(e)}
+          />
+          {errors.image && !errors.weight && (
+            <p className={style.danger}>{errors.image}</p>
+          )}
+        </div>
+        <hr />
+
+        <select onChange={(e) => handleSelect(e)}>
+          {temperament.map((tempers) => (
+            <option value={tempers.name} key={tempers.id}>
+              {tempers.name}
+            </option>
+          ))}
+        </select>
+        <button
+          type="submit"
+          disabled={
+            !input.name || errors.name || errors.height || errors.weight
+          }
+        >
           Create dog
         </button>
       </form>
-      {input.temperament.map((el) => (
-        <div>
-          <p>{el}</p>
-          <button className={style.btnClose} onClick={() => handlerDelete(el)}>
-            X
-          </button>
-        </div>
-      ))}
+
+      <div className={style.temps}>
+        {input.temperament.map((tempers) => (
+          <div key={tempers}>
+            <p>{tempers}</p>
+            <button onClick={(e) => handleDelete(tempers)} className={style.x}>
+              x
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
