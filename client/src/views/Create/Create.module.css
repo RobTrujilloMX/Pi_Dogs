@@ -1,9 +1,57 @@
-.warning {
-  border: solid red 1px;
-  border-radius: 0.2em;
+.mainContainer {
+  background: url(../../img/BGAll.png);
+  background-color: #85cad0;
+  height: 99.8vh;
+  background-repeat: no-repeat;
+  justify-content: center;
 }
 .danger {
   font-size: 10px;
   color: red;
   margin-left: 0em;
+}
+
+.btnBack {
+  background-color: #f77754;
+  margin: 10px;
+  border: solid 2px #584b42;
+  border-radius: 3px;
+  width: 70px;
+  font-size: 15px;
+  color: white;
+}
+
+.btnBack:hover {
+  background: #537d91;
+  border-radius: 3px;
+  /* box-shadow:red; */
+}
+.btnSubmit {
+  background-color: #f77754;
+  margin: 10px;
+  border: solid 2px #584b42;
+  border-radius: 3px;
+  width: 90px;
+  font-size: 15px;
+  color: white;
+}
+
+.btnSubmit:hover {
+  background: #537d91;
+  border-radius: 3px;
+}
+
+.input {
+  border: solid 2px #f77754;
+  padding: 5px;
+}
+
+.divCreate {
+  border: solid 5px #584b42;
+  padding: 4px;
+ display:inline-block;
+ width: 100px;
+ margin: 5px;
+ background-color:  #537d91;
+ color: whitesmoke;
 }
