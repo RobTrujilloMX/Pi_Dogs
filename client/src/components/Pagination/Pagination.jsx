@@ -8,21 +8,6 @@ const pagination = ({ dogsPerPage, allDogs, pagination, currentPage }) => {
     pageNumber.push(i);
   }
 
-// const prevPage = () => {
-//   if (currentPage > 1) {
-//     currentPage--;
-//   }
-// };
-
-// const nextPage = () => {
-//   if (currentPage < pageNumber) {
-//     currentPage++;
-//   }
-// };
-
-
-
-
   return (
     <nav className={style.mainContainer}>
       <ul className={style.pagination}>
