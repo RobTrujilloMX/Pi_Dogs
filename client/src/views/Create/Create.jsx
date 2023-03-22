@@ -89,15 +89,16 @@ const Create = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={style.mainContainer}>
       <Link to={"/Home"}>
-        <button>Back</button>
+        <button className={style.btnBack}>Back</button>
       </Link>
       <h1>Create Dog</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
+        <div className={style.divCreate}>
           <label>Name: </label>
           <input
+            className={style.input}
             type="text"
             name="name"
             value={input.name}
@@ -106,10 +107,11 @@ const Create = () => {
           />
           {errors.name && <p className={style.danger}>{errors.name}</p>}
         </div>
-        <hr />
-        <div>
+        <br />
+        <div className={style.divCreate}>
           <label htmlFor="height">Height: </label>
           <input
+            className={style.input}
             type="number"
             name="height"
             value={input.height}
@@ -120,10 +122,11 @@ const Create = () => {
             <p className={style.danger}>{errors.height}</p>
           )}
         </div>
-        <hr />
-        <div>
+        <br />
+        <div className={style.divCreate}>
           <label htmlFor="weight">Weight: </label>
           <input
+            className={style.input}
             type="number"
             name="weight"
             value={input.weight}
@@ -134,10 +137,11 @@ const Create = () => {
             <p className={style.danger}>{errors.weight}</p>
           )}
         </div>
-        <hr />
-        <div>
+        <br />
+        <div className={style.divCreate}>
           <label htmlFor="life_span">Life span: </label>
           <input
+            className={style.input}
             type="number"
             name="life_span"
             value={input.life_span}
@@ -148,10 +152,11 @@ const Create = () => {
             <p className={style.danger}>{errors.life_span}</p>
           )}
         </div>
-        <hr />
-        <div>
+        <br />
+        <div className={style.divCreate}>
           <label htmlFor="image">Image: </label>
           <input
+            className={style.input}
             type="text"
             name="image"
             value={input.image}
@@ -162,30 +167,36 @@ const Create = () => {
             <p className={style.danger}>{errors.image}</p>
           )}
         </div>
-        <hr />
+        <br />
 
-        <select onChange={(e) => handleSelect(e)}>
+        <select 
+        className={style.selectCreate}
+        onChange={(e) => handleSelect(e)}>
           {temperament.map((tempers) => (
             <option value={tempers.name} key={tempers.id}>
               {tempers.name}
             </option>
           ))}
+        
         </select>
         <button
           type="submit"
           disabled={
-            !input.name || errors.name || errors.height || errors.weight
+            !input.name || errors.name || errors.height || errors.weight || errors.image || errors.life_span
           }
+          className={style.btnSubmi}
         >
           Create dog
         </button>
       </form>
 
-      <div className={style.temps}>
+      <div className={style.divTemper}>
         {input.temperament.map((tempers) => (
           <div key={tempers}>
             <p>{tempers}</p>
-            <button onClick={(e) => handleDelete(tempers)} className={style.x}>
+            <button 
+            className={style.btnX}
+            onClick={(e) => handleDelete(tempers)}>
               x
             </button>
           </div>
