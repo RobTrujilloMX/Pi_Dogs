@@ -76,7 +76,6 @@ const Home = () => {
 
   return (
     <div className={style.mainHome}>
-      {/* <h1>The Dogs Archives(Home)</h1> */}
       <button //The refresh button...
         onClick={(e) => handlerClick(e)}
         className={style.btnRefresh}
