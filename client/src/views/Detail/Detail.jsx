@@ -11,7 +11,7 @@ const Detail = () => {
 
   useEffect(() => {
     const getDogs = async () => {
-      await dispatch(getDetail(id));
+      dispatch(getDetail(id));
     };
 
     getDogs();
@@ -53,7 +53,7 @@ const Detail = () => {
                 {myDetail?.life_span}
               </p>
             </div>
-            {!myDetail.temperamentos?.length ? (
+            {!myDetail.temperament?.length ? (
               <h3>
                 {" "}
                 Temperament:
