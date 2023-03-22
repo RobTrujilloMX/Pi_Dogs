@@ -55,3 +55,34 @@
  background-color:  #537d91;
  color: whitesmoke;
 }
+
+.selectCreate{
+  border: solid 2px #584b42;
+  background-color: #f77754;
+  color: whitesmoke;
+}
+
+.divTemper {
+  display: flex;
+  justify-content: space-around;
+  border: solid 5px #584b42;
+  background: rgb(83,125,145);
+  background: rgb(83,125,145);
+  background: linear-gradient(164deg, rgba(83,125,145,0.4976190305223652) 44%, rgba(164,209,200,0.7469187504103203) 89%);
+  color: whitesmoke;
+}
+
+.btnX {
+  background-color: #f77754;
+  margin: 10px;
+  border: solid 2px #584b42;
+  border-radius: 3px;
+  width: 20px;
+  font-size: 15px;
+  color: white;
+}
+
+.btnX:hover {
+  background: #537d91;
+  border-radius: 3px;
+}
