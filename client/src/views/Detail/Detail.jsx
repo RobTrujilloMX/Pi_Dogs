@@ -11,7 +11,7 @@ const Detail = () => {
 
   useEffect(() => {
     const getDogs = async () => {
-      dispatch(getDetail(id));
+      await dispatch(getDetail(id));
     };
 
     getDogs();
