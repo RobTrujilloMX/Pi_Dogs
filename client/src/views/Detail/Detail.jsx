@@ -4,80 +4,41 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../redux/actions/actions";
 import style from "../Detail/Detail.module.css";
 
-const Detail = () => {
-  const { id } = useParams();
-  const myDetail = useSelector((state) => state.detail);
+const Detail = (props) => {
+  console.log(props);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getDogs = async () => {
-      await dispatch(getDetail(id));
-    };
+    dispatch(getDetail(props.match.params.id));
+  }, [props.match.params, dispatch]);
 
-    getDogs();
-  }, [dispatch, id]);
+  const myDog = useSelector((state) => state.detail);
 
-  function getTemp(arr) {
-    let temp = "";
-    arr.map((e) => (temp += e.name + " "));
-    let response = temp.substring(0, temp.length - 2);
-
-    return response;
-  }
-
-  if (myDetail) {
-    return (
-      <div className={style.divDet}>
-        <div>
-          <Link to="/home">
-            <button className={style.btnHome}>Home</button>
-          </Link>
-        </div>
-        <div>
-          <div className={style.detailText}>
-            <h1>{myDetail?.name}</h1>
-            <div className={style.info}>
-              <p>
-                Avg. Height:
-                <br />
-                {myDetail?.height} Cm.
-              </p>
-              <p>
-                Avg. Weight:
-                <br />
-                {myDetail?.weight} Kg.
-              </p>
-              <p>
-                Life Span:
-                <br />
-                {myDetail?.life_span}
-              </p>
-            </div>
-            {!myDetail.temperament?.length ? (
-              <h3>
-                {" "}
-                Temperament:
-                <br />
-                {myDetail.temperament}
-              </h3>
-            ) : (
-              <p>Temperament: {getTemp(myDetail.temperament)}</p>
-            )}
-
-            <img
-              className={style.detailImg}
-              src={
-                myDetail.reference_image_id
-                  ? myDetail.reference_image_id
-                  : myDetail.image
-              }
-              alt="imagen"
-            />
-          </div>
-        </div>
+  return (
+    <div className={style.divDet}>
+      <div>
+        <Link to="/home">
+          <button className={style.btnHome}>Home</button>
+        </Link>
       </div>
-    );
-  }
+      <div className={style.detailText}>
+        <h1>Name: {myDog?.name}</h1>
+        <div className={style.info}>
+          <h4>Avg. height: {myDog.height} Cm</h4>
+          <h4>Avg weight: {myDog.weight} Kg</h4>
+          <h4>Life span: {myDog.life_span}</h4>
+          <p>
+            <b>Temperament:</b>{" "}
+            {!myDog.createdByUser
+              ? myDog.temperament
+              : myDog.temperaments.map((el) => el.name + ", ")}
+          </p>
+        </div>
+        <br />
+        <img className={style.detailImg} src={myDog.image} alt="Not found" />
+      </div>
+    </div>
+  );
 };
 
 export default Detail;
